@@ -18,3 +18,38 @@ word.addEventListener("keyup", function (event) {
   lowercase.innerText = (word.value.match(/[a-z]/g) || []).length;
   specialcount.innerText = (word.value.match(/[^a-zA-Z0-9]/g) || []).length;
 });
+
+let copy = document.getElementById("copy");
+let clear = document.getElementById("Clear");
+copy.addEventListener("click", function () {
+  navigator.clipboard.writeText(word.value);
+  copy.innerText = "Copied";
+  setTimeout(() => {
+    copy.innerText = "Copy";
+  }, 1000);
+});
+
+clear.addEventListener("click", function () {
+  word.value = "";
+  wordCount.innerText = "0";
+  letterCount.innerText = "0";
+  spaceCount.innerText = "0";
+  alphabet.innerText = "0";
+  digit.innerText = "0";
+  uppercase.innerText = "0";
+  lowercase.innerText = "0";
+  specialcount.innerText = "0";
+});
+
+let uploadFile = document.getElementById("upload-file");
+uploadFile.addEventListener("change", function (event) {
+  let file = event.target.files[0];
+  if (file) {
+    let reader = new FileReader();
+    reader.onload = function (e) {
+      word.value = e.target.result;
+      word.dispatchEvent(new Event("keyup")); // Trigger the keyup event to update counts
+    };
+    reader.readAsText(file);
+  }
+});
