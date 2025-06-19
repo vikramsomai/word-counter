@@ -23,9 +23,9 @@ let copy = document.getElementById("copy");
 let clear = document.getElementById("Clear");
 copy.addEventListener("click", function () {
   navigator.clipboard.writeText(word.value);
-  copy.innerText = "Copied";
+  copy.innerHTML = `<i class="fa-solid fa-copy"></i>`;
   setTimeout(() => {
-    copy.innerText = "Copy";
+    copy.innerHTML = `<i class="fa-regular fa-copy"></i>`;
   }, 1000);
 });
 
@@ -52,4 +52,14 @@ uploadFile.addEventListener("change", function (event) {
     };
     reader.readAsText(file);
   }
+});
+let saveFile = document.getElementById("save-file");
+saveFile.addEventListener("click", () => {
+  let text = word.value;
+  let blob = new Blob([text], { type: "text/plain" });
+  let link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "word-count.txt";
+  link.click();
+  URL.revokeObjectURL(link.href);
 });

@@ -1,6 +1,19 @@
+body {
+  --text-color-normal: #0a244d;
+  --text-color-light: #8cabd9;
+}
+
+body[data-theme="dark"] {
+  --text-color-normal: hsl(210, 10%, 62%);
+  --text-color-light: hsl(210, 15%, 35%);
+  --text-color-richer: hsl(210, 50%, 72%);
+  --text-color-highlight: hsl(25, 70%, 45%);
+}
+
 * {
   margin: 0px;
   padding: 0px;
+  color: var(--text-color-normal);
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -8,6 +21,7 @@
 .container {
   display: flex;
   width: 100%;
+
   justify-content: center;
   align-items: center;
 }
@@ -42,6 +56,7 @@ textarea {
 .result {
   flex-wrap: wrap;
   margin: 10px 0px;
+  width: 80%;
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -53,17 +68,25 @@ h2 {
   border-radius: 20px;
 }
 .header-tool {
+  border-radius: 12px;
   margin: 10px;
+  backdrop-filter: blur(10px);
   cursor: pointer;
+
   display: flex;
+  background-color: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   justify-content: center;
 }
 button {
   background-color: antiquewhite;
   border: none;
-  margin: 10px 20px;
+  margin: 10px 10px;
   padding: 10px 20px;
-  border-radius: 12px;
+  border-radius: 16px;
   font-size: 16px;
   cursor: pointer;
 }
@@ -80,10 +103,10 @@ input[type="file"] {
 }
 
 .custom-file-label {
-  background-color: #f7c948;
+  background-color: antiquewhite;
   color: #222;
   padding: 10px 20px;
-  border-radius: 8px;
+  border-radius: 16px;
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s ease;
@@ -96,4 +119,12 @@ input[type="file"] {
 #fileName {
   font-size: 14px;
   color: #555;
+}
+@media screen and (max-width: 768px) {
+  .result {
+    width: 100%;
+  }
+  h2 {
+    font-size: 16px;
+  }
 }
